@@ -8,6 +8,7 @@ hello("world");
   hello("Anna");
 
   Square s = new Square(5);
+ // Square s2 = new Square(6);
   System.out.println("Площадь квадрата со стороной " + s.l + " = " + s.area());
 
   Reqtangle r = new Reqtangle(4, 6);
