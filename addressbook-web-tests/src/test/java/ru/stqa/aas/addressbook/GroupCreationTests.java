@@ -11,14 +11,15 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
 
 public class GroupCreationTests {
-  FirefoxDriver wd;
+  FirefoxDriver wd;  // wd - это переменная, она является атрибутом объекта типа GroupCreationTests
+//тестовый фреймворк создает объект этого класса...
 
   @BeforeMethod
-  public void setUp() throws Exception {
-    wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
+  public void setUp() throws Exception {  //потом выполняет метод setUp
+    wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true)); //внутри метода инициализируется атрибут объекта...
     wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/group.php");
-    login("admin", "secret");
+    login("admin", "secret");  //и когда вызывается другой метов в том же самом объекте, он может этим атрибутом пользоваться.
   }
 
   private void login(String username, String password) {
