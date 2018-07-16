@@ -1,4 +1,4 @@
-package ru.stqa.aas.addressbook;
+package ru.stqa.aas.addressbook.model;
 
 public class GroupData { //объект
   private final String name;  //три атрибута
