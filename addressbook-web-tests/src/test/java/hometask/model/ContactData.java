@@ -1,4 +1,4 @@
-package hometask;
+package hometask.model;
 
 public class ContactData {
   private final String firstName;
