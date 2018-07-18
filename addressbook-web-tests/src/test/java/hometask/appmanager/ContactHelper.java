@@ -34,7 +34,8 @@ public class ContactHelper extends HelperBase{
   }
 
   public void selectContact() {
-    click(By.id("5"));
+    click(By.name("selected[]"));
+
   }
 
   public void initContactModification() {
@@ -50,7 +51,7 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
-  public void submisContactDeletion() {
+  public void submitContactDeletion() {
     wd.switchTo().alert().accept();
   }
 }
