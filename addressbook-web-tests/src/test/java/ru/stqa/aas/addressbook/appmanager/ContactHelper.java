@@ -1,8 +1,8 @@
-package hometask.appmanager;
+package ru.stqa.aas.addressbook.appmanager;
 
-import hometask.model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import ru.stqa.aas.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase{
 

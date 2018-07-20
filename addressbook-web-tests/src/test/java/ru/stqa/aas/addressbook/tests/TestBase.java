@@ -6,7 +6,7 @@ import ru.stqa.aas.addressbook.appmanager.ApplicationManager;
 
 public class TestBase { //родительский класс
 
-  protected final ApplicationManager app = new ApplicationManager();
+  public  ApplicationManager app = new ApplicationManager();
 
   @BeforeMethod
   public void setUp() throws Exception {  //потом выполняет метод setUp

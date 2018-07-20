@@ -1,4 +1,4 @@
-package hometask.model;
+package ru.stqa.aas.addressbook.model;
 
 public class ContactData {
   private final String firstName;

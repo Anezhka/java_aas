@@ -1,7 +1,8 @@
-package hometask.tests;
+package ru.stqa.aas.addressbook.tests;
 
-import hometask.model.ContactData;
+import ru.stqa.aas.addressbook.model.ContactData;
 import org.testng.annotations.Test;
+import ru.stqa.aas.addressbook.tests.TestBase;
 
 
 public class ContactCreationTests extends TestBase{
