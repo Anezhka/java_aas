@@ -2,12 +2,13 @@ package ru.stqa.aas.addressbook.appmanager;
 
 import com.sun.javafx.binding.ExpressionHelperBase;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.aas.addressbook.model.GroupData;
 
 public class GroupHelper extends HelperBase{
 
-  public GroupHelper(FirefoxDriver wd) {
+  public GroupHelper(WebDriver wd) {
     super(wd); //обращение к конструктору базового класса
   }
 

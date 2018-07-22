@@ -2,12 +2,13 @@ package ru.stqa.aas.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class HelperBase {
-  public FirefoxDriver wd;  // wd - это переменная, она является атрибутом объекта типа GroupCreationTests
+  public WebDriver wd;  // wd - это переменная, она является атрибутом объекта типа GroupCreationTests
 
-  public HelperBase(FirefoxDriver wd) { //конструктор, принимает в кач. параметра ссылку на драйвер
+  public HelperBase(WebDriver wd) { //конструктор, принимает в кач. параметра ссылку на драйвер
     this.wd = wd;
   }
 
