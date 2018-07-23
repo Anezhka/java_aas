@@ -3,7 +3,10 @@ package ru.stqa.aas.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 import ru.stqa.aas.addressbook.model.ContactData;
+
+import java.util.NoSuchElementException;
 
 public class ContactHelper extends HelperBase{
 
@@ -32,7 +35,12 @@ public class ContactHelper extends HelperBase{
     type(By.name("work"), contactData.getWorkPhone());
     type(By.name("fax"), contactData.getFax());
     type(By.name("email"), contactData.getEmail());
+
+    if (isElementPresent(By.name("new_group"))) {
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+    }
   }
+
 
   public void selectContact() {
     click(By.name("selected[]"));
