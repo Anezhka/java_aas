@@ -13,3 +13,22 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 .idea/workspace.xml
+addressbook-web-tests/out/test/classes/ru/stqa/aas/addressbook/Proverka.class
+addressbook-web-tests/src/test/java/ru/stqa/aas/addressbook/Proverka.java
+Sandbox/build/classes/java/main/MyFirstProgram.class
+Sandbox/build/distributions/Sandbox.tar
+Sandbox/build/libs/Sandbox.jar
+Sandbox/build/scripts/Sandbox
+Sandbox/build/distributions/Sandbox.zip
+Sandbox/build/scripts/Sandbox.bat
+Sandbox/build/tmp/jar/MANIFEST.MF
+addressbook-web-tests/src/test/java/hometask/appmanager/ContactHelper.java
+addressbook-web-tests/out/test/classes/hometask/appmanager/ContactHelper.class
+addressbook-web-tests/out/test/classes/hometask/appmanager/ContactHelper.class
+addressbook-web-tests/out/test/classes/hometask/appmanager/ContactHelper.class
+addressbook-web-tests/out/test/classes/hometask/appmanager/ContactHelper.class
+addressbook-web-tests/src/test/java/hometask/appmanager/ContactHelper.java
+addressbook-web-tests/src/test/java/hometask/appmanager/ContactHelper.java
+addressbook-web-tests/out/test/classes/hometask/appmanager/ContactHelper.class
+addressbook-web-tests/src/test/java/hometask/appmanager/ContactHelper.java
+addressbook-web-tests/out/test/classes/hometask/appmanager/ContactHelper.class

@@ -2,10 +2,8 @@ package ru.stqa.aas.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-
-import java.util.NoSuchElementException;
 
 public class HelperBase {
   public WebDriver wd;  // wd - это переменная, она является атрибутом объекта типа GroupCreationTests
