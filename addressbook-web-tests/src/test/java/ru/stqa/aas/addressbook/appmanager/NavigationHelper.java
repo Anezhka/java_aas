@@ -20,12 +20,7 @@ public class NavigationHelper extends HelperBase{
     click(By.linkText("groups"));
 
 }
-  public void gotoAddNewContactPage() {
-    if (isElementPresent(By.linkText("add new")) && isElementPresent(By.name("submit"))) {
-      return;
-    }
-    click(By.linkText("add new"));
-  }
+
 
   public void gotoHomePage() {
     if (isElementPresent(By.id("maintable"))) {

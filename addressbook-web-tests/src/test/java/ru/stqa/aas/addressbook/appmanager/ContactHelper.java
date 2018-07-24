@@ -2,12 +2,9 @@ package ru.stqa.aas.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.aas.addressbook.model.ContactData;
-
-import java.util.NoSuchElementException;
 
 public class ContactHelper extends HelperBase{
 
@@ -66,5 +63,23 @@ public class ContactHelper extends HelperBase{
 
   public void submitContactDeletion() {
     wd.switchTo().alert().accept();
+  }
+
+  public void createContact(ContactData contact, boolean b) {
+    initAddNewContact();
+    fillContactForm(contact, true);
+    inputContactCreation();
+    returnToHomePage();
+  }
+
+  public void initAddNewContact() {
+    if (isElementPresent(By.linkText("add new")) && isElementPresent(By.name("submit"))) {
+      return;
+    }
+    click(By.linkText("add new"));
+  }
+
+  public boolean isThereAGroup() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
