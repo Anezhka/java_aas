@@ -1,19 +1,36 @@
 package ru.stqa.aas.addressbook.model;
 
 public class GroupData { //объект
-  private final String name;  //три атрибута
+  private int id;
+  private final String name;  //атрибуты
   private final String header;
   private final String footer;
 
   public GroupData(String name, String header, String footer) { //конструктор инициализирует объекты значениями
+    this.id = 0; //для примера 0
     this.name = name;
     this.header = header;
     this.footer = footer;
   }
 
+  public GroupData(int id, String name, String header, String footer) { //конструктор инициализирует объекты значениями
+    this.id = id;
+    this.name = name;
+    this.header = header;
+    this.footer = footer;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
   public String getName() {
     return name;
-  }  //три метода, которые возвращают эти атрибуты
+  }  //четыре метода, которые возвращают эти атрибуты
 
   public String getHeader() {
     return header;
@@ -21,5 +38,31 @@ public class GroupData { //объект
 
   public String getFooter() {
     return footer;
+  }
+
+  @Override
+  public String toString() {
+    return "GroupData{" +
+            "id='" + id + '\'' +
+            ", name='" + name + '\'' +
+            '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    GroupData groupData = (GroupData) o;
+
+    if (id != groupData.id) return false;
+    return name != null ? name.equals(groupData.name) : groupData.name == null;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    return result;
   }
 }
