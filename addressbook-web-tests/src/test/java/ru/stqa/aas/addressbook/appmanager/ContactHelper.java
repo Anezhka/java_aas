@@ -10,7 +10,7 @@ import ru.stqa.aas.addressbook.model.ContactData;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactHelper extends HelperBase{
+public class ContactHelper extends HelperBase {
 
   public ContactHelper(WebDriver wd) {
     super(wd);
@@ -89,17 +89,20 @@ public class ContactHelper extends HelperBase{
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.name("entry"));
-    for (WebElement element : elements) {
-      String name = element.getText();
-      ContactData contact = new ContactData(name, null, null, null, null, null, null,
+    List<WebElement> rows = wd.findElements(By.name("entry"));
+    for (WebElement row : rows) {
+      List<WebElement> cells = row.findElements(By.tagName("td"));
+      String name = cells.get(2).getText();
+      String lastName = cells.get(1).getText();
+      ContactData contact = new ContactData(name, null, lastName, null, null, null, null,
               null, null, null, null, null, null);
       contacts.add(contact);
     }
     return contacts;
-}
+  }
 
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
 }
+
