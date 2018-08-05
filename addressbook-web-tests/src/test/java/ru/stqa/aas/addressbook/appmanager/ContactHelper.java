@@ -82,6 +82,10 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
+  }
+
 
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
@@ -94,15 +98,15 @@ public class ContactHelper extends HelperBase {
       List<WebElement> cells = row.findElements(By.tagName("td"));
       String name = cells.get(2).getText();
       String lastName = cells.get(1).getText();
-      ContactData contact = new ContactData(name, null, lastName, null, null, null, null,
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      ContactData contact = new ContactData(id, name, null, lastName, null, null, null, null,
               null, null, null, null, null, null);
       contacts.add(contact);
     }
     return contacts;
   }
-
-  public boolean isThereAContact() {
-    return isElementPresent(By.name("selected[]"));
-  }
 }
+
+
+
 

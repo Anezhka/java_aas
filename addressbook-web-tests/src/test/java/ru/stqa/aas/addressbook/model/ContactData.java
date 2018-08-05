@@ -1,7 +1,19 @@
 package ru.stqa.aas.addressbook.model;
 
 public class ContactData {
+  private int id;
   private final String firstName;
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+
+
   private final String middleName;
   private final String lastName;
   private final String nickname;
@@ -15,7 +27,27 @@ public class ContactData {
   private final String email;
   private String group;
 
+
+
   public ContactData(String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String homePhone, String mobilePhone, String workPhone, String fax, String email, String group) {
+    this.id = Integer.MAX_VALUE;
+    this.firstName = firstName;
+    this.middleName = middleName;
+    this.lastName = lastName;
+    this.nickname = nickname;
+    this.title = title;
+    this.company = company;
+    this.address = address;
+    this.homePhone = homePhone;
+    this.mobilePhone = mobilePhone;
+    this.workPhone = workPhone;
+    this.fax = fax;
+    this.email = email;
+    this.group = group;
+  }
+
+  public ContactData(int id, String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String homePhone, String mobilePhone, String workPhone, String fax, String email, String group) {
+    this.id = id;
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;
@@ -86,11 +118,11 @@ public class ContactData {
   @Override
   public String toString() {
     return "ContactData{" +
-            "firstName='" + firstName + '\'' +
+            "id='" + id + '\'' +
+            ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             '}';
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
