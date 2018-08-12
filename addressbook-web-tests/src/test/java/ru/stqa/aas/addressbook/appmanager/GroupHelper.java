@@ -7,7 +7,6 @@ import ru.stqa.aas.addressbook.model.GroupData;
 import ru.stqa.aas.addressbook.model.Groups;
 
 import java.util.List;
-import java.util.Set;
 
 public class GroupHelper extends HelperBase {
 

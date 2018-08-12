@@ -13,7 +13,9 @@ public class ContactCreationTests extends TestBase {
   @Test
   public void testContactCreation() {
     Contacts before = app.contact().all();
-    ContactData contact = new ContactData().withFirstName("Ivan").withMiddleName("Ivanovich").withLastName("Ivanov").withNickname("Ivaha").withTitle("Boss").withCompany("WSAB").withAddress("Finland, Helsinki, Tehtankatu, 35").withHomePhone("+358777777").withMobilePhone("+358555555").withWorkPhone("+358333333").withFax("+358999999").withEmail("boss@gmail.com").withGroup("test1");
+    ContactData contact = new ContactData().withFirstName("Ivan").withMiddleName("Ivanovich").withLastName("Ivanov")
+            .withNickname("Ivaha").withTitle("Boss").withCompany("WSAB").withAddress("Finland, Helsinki, Tehtankatu, 35").withHomePhone("+358777777").withMobilePhone("+358555555").withWorkPhone("+358333333").withFax("+358999999")
+            .withEmail("boss@gmail.com").withEmail2("bos@mail.ru").withEmail3("bosya@yandex.ru").withGroup("test1");
     app.contact().create(contact, true);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.contact().all();
@@ -24,7 +26,9 @@ public class ContactCreationTests extends TestBase {
   @Test
   public void testBadContactCreation() {
     Contacts before = app.contact().all();
-    ContactData contact = new ContactData().withFirstName("Ivan").withMiddleName("Ivanovich").withLastName("Ivanov").withNickname("Ivaha").withTitle("Boss").withCompany("WSAB").withAddress("Finland, Helsinki, Tehtankatu, 35").withHomePhone("+358777777").withMobilePhone("+358555555").withWorkPhone("+358333333").withFax("+358999999").withEmail("boss@gmail.com").withGroup("test1");
+    ContactData contact = new ContactData().withFirstName("Ivan'").withMiddleName("Ivanovich").withLastName("Ivanov")
+            .withNickname("Ivaha").withTitle("Boss").withCompany("WSAB").withAddress("Finland, Helsinki, Tehtankatu, 35").withHomePhone("+358777777").withMobilePhone("+358555555").withWorkPhone("+358333333").withFax("+358999999")
+            .withEmail("boss@gmail.com").withEmail2("bos@mail.ru").withEmail3("bosya@yandex.ru").withGroup("test1");
     app.contact().create(contact, true);
     assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.contact().all();
