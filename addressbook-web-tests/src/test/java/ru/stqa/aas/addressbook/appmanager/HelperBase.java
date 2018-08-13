@@ -5,6 +5,8 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
+import java.io.File;
+
 public class HelperBase {
   public WebDriver wd;  // wd - это переменная, она является атрибутом объекта типа GroupCreationTests
 
@@ -26,6 +28,13 @@ public class HelperBase {
       }
     }
   }
+
+  public void attach(By locator, File file) {
+    if (file != null) {
+        wd.findElement(locator).sendKeys(file.getAbsolutePath());
+      }
+    }
+
 
 // public void type(By locator, String text) {
  // click(locator);

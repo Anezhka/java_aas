@@ -1,5 +1,7 @@
 package ru.stqa.aas.addressbook.model;
 
+import java.io.File;
+
 public class ContactData {
   private int id = Integer.MAX_VALUE;
   private String firstName;
@@ -19,6 +21,7 @@ public class ContactData {
   private String group;
   private String allPhones;
   private String allEmail;
+  private File photo;
 
 
   public String getFirstName() {
@@ -87,6 +90,10 @@ public class ContactData {
 
   public String getAllEmail() {
     return allEmail;
+  }
+
+  public File getPhoto() {
+    return photo;
   }
 
   @Override
@@ -208,6 +215,11 @@ public class ContactData {
 
   public ContactData withAllEmail(String allEmail) {
     this.allEmail = allEmail;
+    return this;
+  }
+
+  public ContactData withPhoto(File photo) {
+    this.photo = photo;
     return this;
   }
 }
