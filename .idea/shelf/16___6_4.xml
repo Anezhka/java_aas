@@ -1,0 +1,24 @@
+<changelist name="16_августа_лекция_6_4" date="1534453000258" recycled="false">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/16_августа_лекция_6_4/shelved.patch" />
+  <option name="DESCRIPTION" value="16 августа лекция 6.4" />
+  <binary>
+    <option name="BEFORE_PATH" value="addressbook-web-tests/out/test/classes/ru/stqa/aas/addressbook/appmanager/GroupHelper.class" />
+    <option name="AFTER_PATH" value="addressbook-web-tests/out/test/classes/ru/stqa/aas/addressbook/appmanager/GroupHelper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/16_августа_лекция_6_4/GroupHelper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="addressbook-web-tests/out/test/classes/ru/stqa/aas/addressbook/tests/GroupCreationTests.class" />
+    <option name="AFTER_PATH" value="addressbook-web-tests/out/test/classes/ru/stqa/aas/addressbook/tests/GroupCreationTests.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/16_августа_лекция_6_4/GroupCreationTests.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="addressbook-web-tests/out/test/classes/ru/stqa/aas/addressbook/tests/GroupDeletionTests.class" />
+    <option name="AFTER_PATH" value="addressbook-web-tests/out/test/classes/ru/stqa/aas/addressbook/tests/GroupDeletionTests.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/16_августа_лекция_6_4/GroupDeletionTests.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="addressbook-web-tests/out/test/classes/ru/stqa/aas/addressbook/tests/GroupModificationTests.class" />
+    <option name="AFTER_PATH" value="addressbook-web-tests/out/test/classes/ru/stqa/aas/addressbook/tests/GroupModificationTests.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/16_августа_лекция_6_4/GroupModificationTests.class" />
+  </binary>
+</changelist>

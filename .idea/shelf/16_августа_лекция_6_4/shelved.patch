@@ -1,0 +1,140 @@
+Index: addressbook-web-tests/out/test/resources/contacts.csv
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>Ivan 0;Ivanovich 0;Ivanov 0\nIvan 1;Ivanovich 1;Ivanov 1\nIvan 2;Ivanovich 2;Ivanov 2\nIvan 3;Ivanovich 3;Ivanov 3\nIvan 4;Ivanovich 4;Ivanov 4\nIvan 5;Ivanovich 5;Ivanov 5\nIvan 6;Ivanovich 6;Ivanov 6\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- addressbook-web-tests/out/test/resources/contacts.csv	(revision ad3b09f7862a043268708a813f2fcaf38ee455fe)
++++ addressbook-web-tests/out/test/resources/contacts.csv	(date 1534450978108)
+@@ -5,3 +5,11 @@
+ Ivan 4;Ivanovich 4;Ivanov 4
+ Ivan 5;Ivanovich 5;Ivanov 5
+ Ivan 6;Ivanovich 6;Ivanov 6
++Ivan 7;Ivanovich 7;Ivanov 7
++Ivan 8;Ivanovich 8;Ivanov 8
++Ivan 9;Ivanovich 9;Ivanov 9
++Ivan 10;Ivanovich 10;Ivanov 10
++Ivan 11;Ivanovich 11;Ivanov 11
++Ivan 12;Ivanovich 12;Ivanov 12
++Ivan 13;Ivanovich 13;Ivanov 13
++Ivan 14;Ivanovich 14;Ivanov 14
+Index: addressbook-web-tests/src/test/java/ru/stqa/aas/addressbook/appmanager/GroupHelper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.stqa.aas.addressbook.appmanager;\n\nimport org.openqa.selenium.By;\nimport org.openqa.selenium.WebDriver;\nimport org.openqa.selenium.WebElement;\nimport ru.stqa.aas.addressbook.model.GroupData;\nimport ru.stqa.aas.addressbook.model.Groups;\n\nimport java.util.List;\n\npublic class GroupHelper extends HelperBase {\n\n  public GroupHelper(WebDriver wd) {\n    super(wd); //обращение к конструктору базового класса\n  }\n\n  public void returnToGroupPage() {\n    click(By.linkText(\"group page\"));\n  }\n\n  public void submitGroupCreation() {\n    click(By.name(\"submit\"));\n  }\n\n  public void fillGroupForm(GroupData groupData) {\n    type(By.name(\"group_name\"), groupData.getName());\n    type(By.name(\"group_header\"), groupData.getHeader());\n    type(By.name(\"group_footer\"), groupData.getFooter());\n  }\n\n  public void initGroupCreation() {\n    click(By.name(\"new\"));\n  }\n\n  public void deleteSelectedGroups() {\n    click(By.name(\"delete\"));\n  }\n\n  public void selectGroupById(int id) {\n    wd.findElement(By.cssSelector(\"input[value='\" + id + \"']\")).click();\n  }\n\n  public void initGroupModification() {\n    click(By.name(\"edit\"));\n  }\n\n  public void submitGroupModification() {\n    click(By.name(\"update\"));\n  }\n\n  public void create(GroupData group) {\n    initGroupCreation();\n    fillGroupForm(group);\n    submitGroupCreation();\n\n    returnToGroupPage();\n  }\n\n  public void modify(GroupData group) {\n   selectGroupById(group.getId());\n   initGroupModification();\n   fillGroupForm(group);\n   submitGroupModification();\n   groupCache = null;\n   returnToGroupPage();\n  }\n\n  public void delete(GroupData group) {\n    selectGroupById(group.getId());\n    deleteSelectedGroups();\n    groupCache = null;\n    returnToGroupPage();\n  }\n\n  public boolean isThereAGroup() {\n    return isElementPresent(By.name(\"selected[]\"));\n  }\n\n  public int Count() {\n    return wd.findElements(By.name(\"selected[]\")).size();\n  }\n\n  private Groups groupCache = null;\n\n  public Groups all() {\n    if (groupCache != null) {\n      return new Groups(groupCache);\n    }\n\n    groupCache = new Groups();\n    List<WebElement> elements = wd.findElements(By.cssSelector(\"span.group\"));\n    for (WebElement element : elements) {\n      String name = element.getText();\n      int id = Integer.parseInt(element.findElement(By.tagName(\"input\")).getAttribute(\"value\"));\n      groupCache.add(new GroupData().withId(id).withName(name));\n    }\n    return new Groups(groupCache);\n  }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- addressbook-web-tests/src/test/java/ru/stqa/aas/addressbook/appmanager/GroupHelper.java	(revision ad3b09f7862a043268708a813f2fcaf38ee455fe)
++++ addressbook-web-tests/src/test/java/ru/stqa/aas/addressbook/appmanager/GroupHelper.java	(date 1534451728397)
+@@ -76,7 +76,7 @@
+     return isElementPresent(By.name("selected[]"));
+   }
+ 
+-  public int Count() {
++  public int count() {
+     return wd.findElements(By.name("selected[]")).size();
+   }
+ 
+Index: addressbook-web-tests/src/test/java/ru/stqa/aas/addressbook/tests/GroupCreationTests.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.stqa.aas.addressbook.tests;\n\n\nimport org.testng.annotations.Test;\nimport ru.stqa.aas.addressbook.model.GroupData;\nimport ru.stqa.aas.addressbook.model.Groups;\n\nimport static org.hamcrest.CoreMatchers.equalTo;\nimport static org.hamcrest.MatcherAssert.assertThat;\n\n\npublic class GroupCreationTests extends TestBase {\n  //тестовый фреймворк создает объект этого класса...\n\n  @Test\n  public void testGroupCreation() {\n    app.goTo().groupPage();\n    Groups before = app.group().all();\n    GroupData group = new GroupData().withName(\"test2\");\n    app.group().create(group);\n    Groups after = app.group().all();\n    assertThat(app.group().Count(), equalTo(before.size() + 1));//может стоять до и после\n    assertThat(after, equalTo(//преобразует объект в число\n            before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt())))); //копия\n\n  }\n\n  @Test\n  public void testBadGroupCreation() {\n    app.goTo().groupPage();\n    Groups before = app.group().all();\n    GroupData group = new GroupData().withName(\"test'\");\n    app.group().create(group);\n    assertThat(app.group().Count(), equalTo(before.size()));\n    Groups after = app.group().all();\n    assertThat(after, equalTo(before));\n\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- addressbook-web-tests/src/test/java/ru/stqa/aas/addressbook/tests/GroupCreationTests.java	(revision ad3b09f7862a043268708a813f2fcaf38ee455fe)
++++ addressbook-web-tests/src/test/java/ru/stqa/aas/addressbook/tests/GroupCreationTests.java	(date 1534451728481)
+@@ -1,10 +1,15 @@
+ package ru.stqa.aas.addressbook.tests;
+ 
+ 
++import org.testng.annotations.DataProvider;
+ import org.testng.annotations.Test;
+ import ru.stqa.aas.addressbook.model.GroupData;
+ import ru.stqa.aas.addressbook.model.Groups;
+ 
++import java.util.ArrayList;
++import java.util.Iterator;
++import java.util.List;
++
+ import static org.hamcrest.CoreMatchers.equalTo;
+ import static org.hamcrest.MatcherAssert.assertThat;
+ 
+@@ -12,17 +17,25 @@
+ public class GroupCreationTests extends TestBase {
+   //тестовый фреймворк создает объект этого класса...
+ 
+-  @Test
+-  public void testGroupCreation() {
++  @DataProvider
++public Iterator<Object[]> validGroups() {
++    List<Object[]> list = new ArrayList<Object[]>();
++    list.add(new Object[] {"test1", "header 1", "footer 1"});
++    list.add(new Object[] {"test2", "header 2", "footer 2"});
++    list.add(new Object[] {"test3", "header 3", "footer 3"});
++    return list.iterator();
++  }
++
++  @Test(dataProvider = "validGroups")
++  public void testGroupCreation(String name, String header, String footer) {
++    GroupData group = new GroupData().withName(name).withHeader(header).withFooter(footer);
+     app.goTo().groupPage();
+     Groups before = app.group().all();
+-    GroupData group = new GroupData().withName("test2");
+     app.group().create(group);
++    assertThat(app.group().count(), equalTo(before.size() + 1));//может стоять до и после
+     Groups after = app.group().all();
+-    assertThat(app.group().Count(), equalTo(before.size() + 1));//может стоять до и после
+     assertThat(after, equalTo(//преобразует объект в число
+             before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt())))); //копия
+-
+   }
+ 
+   @Test
+@@ -31,7 +44,7 @@
+     Groups before = app.group().all();
+     GroupData group = new GroupData().withName("test'");
+     app.group().create(group);
+-    assertThat(app.group().Count(), equalTo(before.size()));
++    assertThat(app.group().count(), equalTo(before.size()));
+     Groups after = app.group().all();
+     assertThat(after, equalTo(before));
+ 
+Index: addressbook-web-tests/src/test/java/ru/stqa/aas/addressbook/tests/GroupDeletionTests.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.stqa.aas.addressbook.tests;\n\nimport org.testng.annotations.BeforeMethod;\nimport org.testng.annotations.Test;\nimport ru.stqa.aas.addressbook.model.GroupData;\nimport ru.stqa.aas.addressbook.model.Groups;\n\nimport static org.hamcrest.CoreMatchers.equalTo;\nimport static org.hamcrest.MatcherAssert.assertThat;\n\npublic class GroupDeletionTests extends TestBase {\n\n  @BeforeMethod\n  public void ensurePreconditions() { //предварительные условия\n    app.goTo().groupPage();\n    if (app.group().all().size() == 0) {\n      app.group().create(new GroupData().withName(\"test1\"));\n    }\n  }\n\n\n  @Test\n  public void testGroupDeletion() {\n    Groups before = app.group().all();\n    GroupData deletedGroup = before.iterator().next();\n    app.group().delete(deletedGroup);\n    assertThat(app.group().Count(), equalTo(before.size() - 1));\n    Groups after = app.group().all();\n    assertThat(after, equalTo(before.without(deletedGroup)));\n\n  }\n\n}\n\n    \n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- addressbook-web-tests/src/test/java/ru/stqa/aas/addressbook/tests/GroupDeletionTests.java	(revision ad3b09f7862a043268708a813f2fcaf38ee455fe)
++++ addressbook-web-tests/src/test/java/ru/stqa/aas/addressbook/tests/GroupDeletionTests.java	(date 1534451759196)
+@@ -24,7 +24,7 @@
+     Groups before = app.group().all();
+     GroupData deletedGroup = before.iterator().next();
+     app.group().delete(deletedGroup);
+-    assertThat(app.group().Count(), equalTo(before.size() - 1));
++    assertThat(app.group().count(), equalTo(before.size() - 1));
+     Groups after = app.group().all();
+     assertThat(after, equalTo(before.without(deletedGroup)));
+ 
+Index: addressbook-web-tests/src/test/java/ru/stqa/aas/addressbook/tests/GroupModificationTests.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.stqa.aas.addressbook.tests;\n\nimport org.testng.annotations.BeforeMethod;\nimport org.testng.annotations.Test;\nimport ru.stqa.aas.addressbook.model.GroupData;\nimport ru.stqa.aas.addressbook.model.Groups;\n\nimport static org.hamcrest.CoreMatchers.equalTo;\nimport static org.hamcrest.MatcherAssert.assertThat;\n\npublic class GroupModificationTests extends TestBase {\n\n  @BeforeMethod\n  public void ensurePreconditions() { //предварительные условия\n    app.goTo().groupPage();\n    if (app.group().all().size() == 0) {\n      app.group().create(new GroupData().withName(\"test1\"));\n    }\n  }\n\n  @Test\n  public void testGroupModification() {\n\n    Groups before = app.group().all();\n    GroupData modifiedGroup = before.iterator().next();\n    GroupData group = new GroupData()\n            .withId(modifiedGroup.getId()).withName(\"test1\").withHeader(\"test2\").withFooter(\"test3\"); // локальная переменная group\n    app.group().modify(group);\n    assertThat(app.group().Count(), equalTo(before.size()));\n    Groups after = app.group().all();\n    assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));\n  }\n\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- addressbook-web-tests/src/test/java/ru/stqa/aas/addressbook/tests/GroupModificationTests.java	(revision ad3b09f7862a043268708a813f2fcaf38ee455fe)
++++ addressbook-web-tests/src/test/java/ru/stqa/aas/addressbook/tests/GroupModificationTests.java	(date 1534451772193)
+@@ -26,7 +26,7 @@
+     GroupData group = new GroupData()
+             .withId(modifiedGroup.getId()).withName("test1").withHeader("test2").withFooter("test3"); // локальная переменная group
+     app.group().modify(group);
+-    assertThat(app.group().Count(), equalTo(before.size()));
++    assertThat(app.group().count(), equalTo(before.size()));
+     Groups after = app.group().all();
+     assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
+   }

@@ -52,7 +52,7 @@ public class GroupHelper extends HelperBase {
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
-
+    groupCache = null;
     returnToGroupPage();
   }
 
@@ -76,7 +76,7 @@ public class GroupHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public int Count() {
+  public int count() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
