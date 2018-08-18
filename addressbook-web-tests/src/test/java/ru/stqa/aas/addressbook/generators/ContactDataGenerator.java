@@ -68,7 +68,7 @@ public class ContactDataGenerator {
       .withEmail2(String.format("bos@mail.ru %s", i))
       .withEmail3(String.format("bosya@yandex.ru %s", i))
       .withGroup(String.format("test1"))
-      .withPhoto(String.format("src/test/resources/stru.png %s", i))
+      .withPhoto(String.format("src/test/resources/stru.png"))
       );
     }
     return contacts;
