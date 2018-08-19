@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ru.stqa.aas.addressbook.appmanager.ContactHelper;
 import ru.stqa.aas.addressbook.model.ContactData;
 import ru.stqa.aas.addressbook.model.Contacts;
 
@@ -56,6 +57,7 @@ public class ContactCreationTests extends TestBase {
 
   @Test(dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact) {
+    app.contact().returnToHomePage();
     Contacts before = app.contact().all();
     app.contact().create(contact, true);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
