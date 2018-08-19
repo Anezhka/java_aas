@@ -1,6 +1,11 @@
 package ru.stqa.aas.addressbook.model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
+@XStreamAlias("group")
 public class GroupData { //объект
+  @XStreamOmitField //аннотация- пропустить это поле, не сохранять его в xml
   private int id = Integer.MAX_VALUE;
   private String name;  //атрибуты null
   private String header;

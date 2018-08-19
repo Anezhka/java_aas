@@ -1,0 +1,56 @@
+<list>
+  <contact>
+    <firstName>Ivan 0</firstName>
+    <middleName>Ivanovich 0</middleName>
+    <lastName>Ivanov 0</lastName>
+    <nickname>Ivaha 0</nickname>
+    <title>Boss 0</title>
+    <company>WSAB 0</company>
+    <address>Finland, Helsinki, Tehtankatu, 35 0</address>
+    <homePhone>+358777777 0</homePhone>
+    <mobilePhone>+358555555 0</mobilePhone>
+    <workPhone>+358333333 0</workPhone>
+    <fax>+358999999 0</fax>
+    <email>boss@gmail.com 0</email>
+    <email2>bos@mail.ru 0</email2>
+    <email3>bosya@yandex.ru 0</email3>
+    <group>test1</group>
+    <photo>src/test/resources/stru.png</photo>
+  </contact>
+  <contact>
+    <firstName>Ivan 1</firstName>
+    <middleName>Ivanovich 1</middleName>
+    <lastName>Ivanov 1</lastName>
+    <nickname>Ivaha 1</nickname>
+    <title>Boss 1</title>
+    <company>WSAB 1</company>
+    <address>Finland, Helsinki, Tehtankatu, 35 1</address>
+    <homePhone>+358777777 1</homePhone>
+    <mobilePhone>+358555555 1</mobilePhone>
+    <workPhone>+358333333 1</workPhone>
+    <fax>+358999999 1</fax>
+    <email>boss@gmail.com 1</email>
+    <email2>bos@mail.ru 1</email2>
+    <email3>bosya@yandex.ru 1</email3>
+    <group>test1</group>
+    <photo>src/test/resources/stru.png</photo>
+  </contact>
+  <contact>
+    <firstName>Ivan 2</firstName>
+    <middleName>Ivanovich 2</middleName>
+    <lastName>Ivanov 2</lastName>
+    <nickname>Ivaha 2</nickname>
+    <title>Boss 2</title>
+    <company>WSAB 2</company>
+    <address>Finland, Helsinki, Tehtankatu, 35 2</address>
+    <homePhone>+358777777 2</homePhone>
+    <mobilePhone>+358555555 2</mobilePhone>
+    <workPhone>+358333333 2</workPhone>
+    <fax>+358999999 2</fax>
+    <email>boss@gmail.com 2</email>
+    <email2>bos@mail.ru 2</email2>
+    <email3>bosya@yandex.ru 2</email3>
+    <group>test1</group>
+    <photo>src/test/resources/stru.png</photo>
+  </contact>
+</list>
