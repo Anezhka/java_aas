@@ -32,3 +32,4 @@ addressbook-web-tests/src/test/java/hometask/appmanager/ContactHelper.java
 addressbook-web-tests/out/test/classes/hometask/appmanager/ContactHelper.class
 addressbook-web-tests/src/test/java/hometask/appmanager/ContactHelper.java
 addressbook-web-tests/out/test/classes/hometask/appmanager/ContactHelper.class
+*.log
