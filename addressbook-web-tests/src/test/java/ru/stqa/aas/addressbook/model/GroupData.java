@@ -1,5 +1,6 @@
 package ru.stqa.aas.addressbook.model;
 
+import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
@@ -7,8 +8,11 @@ import com.thoughtworks.xstream.annotations.XStreamOmitField;
 public class GroupData { //объект
   @XStreamOmitField //аннотация- пропустить это поле, не сохранять его в xml
   private int id = Integer.MAX_VALUE;
+  @Expose //наоборот оставить поле снизу
   private String name;  //атрибуты null
+  @Expose
   private String header;
+  @Expose
   private String footer;
 
   public int getId() {
