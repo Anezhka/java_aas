@@ -70,9 +70,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
     Groups after = app.db().groups();
     assertThat(after, equalTo(//преобразует объект в число
             before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt())))); //копия
+    verifyGroupListInUI();
   }
 
-  @Test
+  @Test (enabled = false)
   public void testBadGroupCreation() {
     app.goTo().groupPage();
     Groups before = app.group().all();
