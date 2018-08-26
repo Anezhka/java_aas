@@ -12,10 +12,7 @@ public class GroupModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() { //предварительные условия
-    if (app.db().groups().size() == 0) {
-      app.goTo().groupPage();
-      app.group().create(new GroupData().withName("test1"));
-    }
+    app.group().createGroupIfNotExist();
   }
 
   @Test

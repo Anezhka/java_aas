@@ -8,6 +8,8 @@ import ru.stqa.aas.addressbook.model.Groups;
 
 import java.util.List;
 
+import static ru.stqa.aas.addressbook.tests.TestBase.app;
+
 public class GroupHelper extends HelperBase {
 
   public GroupHelper(WebDriver wd) {
@@ -97,4 +99,10 @@ public class GroupHelper extends HelperBase {
     return new Groups(groupCache);
   }
 
-}
+  public void createGroupIfNotExist() {
+    if (app.db().groups().size() == 0) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("test1"));
+    }
+
+}}

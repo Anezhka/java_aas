@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.XStream;
 import ru.stqa.aas.addressbook.model.ContactData;
+import ru.stqa.aas.addressbook.model.Groups;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -14,6 +15,8 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
+
+import static ru.stqa.aas.addressbook.tests.TestBase.app;
 
 public class ContactDataGenerator {
 
@@ -76,12 +79,13 @@ public class ContactDataGenerator {
       for (ContactData contact : contacts) {
         writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstName(), contact.getMiddleName(), contact.getLastName(),
                 contact.getNickname(), contact.getTitle(), contact.getCompany(), contact.getAddress(), contact.getHomePhone(),
-                contact.getMobilePhone(), contact.getWorkPhone(), contact.getFax(), contact.getEmail(), contact.getEmail2(), contact.getEmail3(), contact.getGroup(), contact.getPhoto()));
+                contact.getMobilePhone(), contact.getWorkPhone(), contact.getFax(), contact.getEmail(), contact.getEmail2(), contact.getEmail3(), contact.getGroups(), contact.getPhoto()));
       }
     }
   }
 
   private List<ContactData> generateContacts(int count) {
+    Groups groups = app.db().groups();
     List<ContactData> contacts = new ArrayList<ContactData>();
     for (int i = 0; i < count; i++) {
       contacts.add(new ContactData()
@@ -99,7 +103,7 @@ public class ContactDataGenerator {
       .withEmail(String.format("boss@gmail.com %s", i))
       .withEmail2(String.format("bos@mail.ru %s", i))
       .withEmail3(String.format("bosya@yandex.ru", i))
-      .withGroup(String.format("test1"))
+      .inGroup(groups.iterator().next())
       .withPhoto(String.format("src/test/resources/stru.png"))
       );
     }

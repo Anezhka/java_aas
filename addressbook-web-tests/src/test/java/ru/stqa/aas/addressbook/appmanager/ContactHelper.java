@@ -7,9 +7,12 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.aas.addressbook.model.ContactData;
 import ru.stqa.aas.addressbook.model.Contacts;
+import ru.stqa.aas.addressbook.model.GroupData;
 
 import java.io.File;
 import java.util.List;
+
+import static ru.stqa.aas.addressbook.tests.TestBase.app;
 
 public class ContactHelper extends HelperBase {
 
@@ -43,11 +46,14 @@ public class ContactHelper extends HelperBase {
     attach(By.name("photo"), new File (contactData.getPhoto()));
 
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      if (contactData.getGroups().size() > 0) {
+        Assert.assertTrue(contactData.getGroups().size() == 1);
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
 
     }
+  }
   }
 
   public void selectContactById(int id) {
@@ -157,7 +163,8 @@ public class ContactHelper extends HelperBase {
     List<WebElement> cells = row.findElements(By.tagName("td"));
     cells.get(7).findElement(By.tagName("a")).click();
   }
-}
+  }
+
 
 
 

@@ -7,6 +7,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.aas.addressbook.model.ContactData;
 import ru.stqa.aas.addressbook.model.Contacts;
+import ru.stqa.aas.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -56,21 +57,27 @@ public class ContactCreationTests extends TestBase {
 
   @Test(dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact) {
+    app.group().createGroupIfNotExist(); //проверяет, если группы нет, то создает
+    Groups groups = app.db().groups();
+
     app.contact().returnToHomePage();
     Contacts before = app.db().contacts();
-    app.contact().create(contact, true);
+    app.contact().create(contact.inGroup(groups.iterator().next()), true);
+
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
   }
 
+
+
   @Test (enabled = false)
   public void testBadContactCreation() {
     Contacts before = app.contact().all();
     ContactData contact = new ContactData().withFirstName("Ivan'").withMiddleName("Ivanovich").withLastName("Ivanov")
             .withNickname("Ivaha").withTitle("Boss").withCompany("WSAB").withAddress("Finland, Helsinki, Tehtankatu, 35").withHomePhone("+358777777").withMobilePhone("+358555555").withWorkPhone("+358333333").withFax("+358999999")
-            .withEmail("boss@gmail.com").withEmail2("bos@mail.ru").withEmail3("bosya@yandex.ru").withGroup("test1");
+            .withEmail("boss@gmail.com").withEmail2("bos@mail.ru").withEmail3("bosya@yandex.ru");
     app.contact().create(contact, true);
     assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.contact().all();
